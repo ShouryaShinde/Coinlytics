@@ -1,0 +1,28 @@
+{
+  "name": "coinlytics",
+  "version": "1.0.0",
+  "description": "\"Coinlytics\"",
+  "homepage": "https://github.com/ShouryaShinde/Coinlytics#readme",
+  "bugs": {
+    "url": "https://github.com/ShouryaShinde/Coinlytics/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShouryaShinde/Coinlytics.git"
+  },
+  "license": "ISC",
+  "author": "Shourya Shinde",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.14",
+    "body-parser": "^2.2.0",
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "tailwindcss": "^4.1.14"
+  }
+}
