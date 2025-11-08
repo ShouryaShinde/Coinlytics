@@ -1,3 +1,117 @@
 <%- include("partials/header.ejs") %>
+<div class="headings">
+  <h1>Dashboard</h1>
+  <p class="text-body-secondary">Track real-time cryptocurrency prices and market trends</p>
+</div>
+<div class="Dashboard Cards GridParent">
+  <!--Card 1 : Total Market Cap-->
+  <div class="crypto-card">
+    <div class="card-header">
+      <!-- Icon Section -->
+      <div class="icon-wrapper">
+        <i class="bi bi-currency-dollar custom-icon"></i>
+      </div>
+      
+      <!-- Trend Indicator -->
+      <% if (data.market_cap_change_percentage_24h_usd > 0) { %>
+      <div class="trend positive">
+          <i class="bi bi-graph-up-arrow"></i>
+        +<%= Intl.NumberFormat("en-US", {
+        notation: "compact",
+        maximumFractionDigits: 2
+      }).format(data.market_cap_change_percentage_24h_usd) %>%
+      </div>
+      <% } else { %>
+        <div class="trend negative">
+          <i class="bi bi-graph-down-arrow"></i>
+        <%= Intl.NumberFormat("en-US", {
+        notation: "compact",
+        maximumFractionDigits: 2
+      }).format(data.market_cap_change_percentage_24h_usd) %>%
+      </div>
+      <%}%>
+    </div>
+    
+    <!-- Label -->
+    <p class="card-label">Total Market Cap</p>
+    
+    <!-- Value -->
+    <p class="card-value">
+      <%= Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      notation: "compact",
+      maximumFractionDigits: 2
+    }).format(data.total_market_cap.usd) %>
+    </p>
+  </div>
+  <!--Card 2 : 24h Volume-->
+  <div class="crypto-card">
+  <div class="card-header">
+    <!-- Icon Section -->
+    <div class="icon-wrapper">
+      <i class="bi bi-activity custom-icon"></i>
+    </div>
+    
+    <!-- Trend Indicator -->
+    <div class="trend positive">
+      <i class="bi bi-graph-up-arrow"></i>
+      +2.4%
+    </div>
+  </div>
+  
+  <!-- Label -->
+  <p class="card-label">24h Volume</p>
+  
+  <!-- Value -->
+  <p class="card-value">$2.15T</p>
+</div>
+<!--Card 3 : BTC Dominance -->
+  <div class="crypto-card">
+  <div class="card-header">
+    <!-- Icon Section -->
+    <div class="icon-wrapper">
+      <i class="bi bi-currency-bitcoin custom-icon"></i>
+    </div>
+    
+    <!-- Trend Indicator -->
+    <div class="trend positive">
+      <i class="bi bi-graph-up-arrow"></i>
+      +2.4%
+    </div>
+  </div>
+  
+  <!-- Label -->
+  <p class="card-label">BTC Dominance</p>
+  
+  <!-- Value -->
+  <p class="card-value">$2.15T</p>
+</div>
+<!--Card 4 : Feed and Greed Index -->
+  <div class="crypto-card">
+  <div class="card-header">
+    <!-- Icon Section -->
+    <div class="icon-wrapper">
+      <i class="bi bi-activity custom-icon"></i>
+    </div>
+    
+    <!-- Trend Indicator -->
+    <div class="trend positive">
+      <i class="bi bi-graph-up-arrow"></i>
+      +2.4%
+    </div>
+  </div>
+  
+  <!-- Label -->
+  <p class="card-label">Fear and Greed Index</p>
+  
+  <!-- Value -->
+  <p class="card-value">$2.15T</p>
+</div>
 
+  </div>
+  
+</div>
+
+</div>
 <%- include("partials/footer.ejs") %>
