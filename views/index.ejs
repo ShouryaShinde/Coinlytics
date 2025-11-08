@@ -13,13 +13,13 @@
       </div>
       
       <!-- Trend Indicator -->
-      <% if (data.market_cap_change_percentage_24h_usd > 0) { %>
+      <% if (global.market_cap_change_percentage_24h_usd > 0) { %>
       <div class="trend positive">
           <i class="bi bi-graph-up-arrow"></i>
         +<%= Intl.NumberFormat("en-US", {
         notation: "compact",
         maximumFractionDigits: 2
-      }).format(data.market_cap_change_percentage_24h_usd) %>%
+      }).format(global.market_cap_change_percentage_24h_usd) %>%
       </div>
       <% } else { %>
         <div class="trend negative">
@@ -27,7 +27,7 @@
         <%= Intl.NumberFormat("en-US", {
         notation: "compact",
         maximumFractionDigits: 2
-      }).format(data.market_cap_change_percentage_24h_usd) %>%
+      }).format(global.market_cap_change_percentage_24h_usd) %>%
       </div>
       <%}%>
     </div>
@@ -42,7 +42,7 @@
       currency: "USD",
       notation: "compact",
       maximumFractionDigits: 2
-    }).format(data.total_market_cap.usd) %>
+    }).format(global.total_market_cap.usd) %>
     </p>
   </div>
   <!--Card 2 : 24h Volume-->
@@ -55,8 +55,6 @@
     
     <!-- Trend Indicator -->
     <div class="trend positive">
-      <i class="bi bi-graph-up-arrow"></i>
-      +2.4%
     </div>
   </div>
   
@@ -64,7 +62,14 @@
   <p class="card-label">24h Volume</p>
   
   <!-- Value -->
-  <p class="card-value">$2.15T</p>
+  <p class="card-value">
+    <%= Intl.NumberFormat("en-US" , {
+      style : "currency" ,
+      currency : "USD" ,
+      notation : "compact" ,
+      maximumFractionDigits : 2
+    }).format(global.total_volume.usd) %>
+  </p>
 </div>
 <!--Card 3 : BTC Dominance -->
   <div class="crypto-card">
@@ -75,30 +80,60 @@
     </div>
     
     <!-- Trend Indicator -->
-    <div class="trend positive">
-      <i class="bi bi-graph-up-arrow"></i>
-      +2.4%
-    </div>
+      <% if (btcData.market_cap_change_percentage_24h > 0) { %>
+      <div class="trend positive">
+          <i class="bi bi-graph-up-arrow"></i>
+        +<%= Intl.NumberFormat("en-US", {
+        notation: "compact",
+        maximumFractionDigits: 2
+      }).format(btcData.market_cap_change_percentage_24h) %>%
+      </div>
+      <% } else { %>
+        <div class="trend negative">
+          <i class="bi bi-graph-down-arrow"></i>
+        <%= Intl.NumberFormat("en-US", {
+        notation: "compact",
+        maximumFractionDigits: 2
+      }).format(btcData.market_cap_change_percentage_24h) %>%
+      </div>
+      <%}%>
   </div>
   
   <!-- Label -->
   <p class="card-label">BTC Dominance</p>
   
   <!-- Value -->
-  <p class="card-value">$2.15T</p>
+  <p class="card-value">
+    <%= Intl.NumberFormat("en-US" , {
+      style : "currency" ,
+      currency : "USD" ,
+      notation : "compact" ,
+      maximumFractionDigits : 2
+    }).format(btcData.market_cap) %>
+  </p>
 </div>
 <!--Card 4 : Feed and Greed Index -->
   <div class="crypto-card">
   <div class="card-header">
     <!-- Icon Section -->
     <div class="icon-wrapper">
-      <i class="bi bi-activity custom-icon"></i>
+      <i class="bi bi-heart-pulse custom-icon"></i>
     </div>
     
     <!-- Trend Indicator -->
+    <% let color = "" ;
+    let iconClass = "" ;
+    if (parseInt(fng.value) <= 24 ) { color = '#d9534f' ; iconClass = "bi-graph-down-arrow"}
+    else if (parseInt(fng.value ) <= 50) { color = '#f0ad4e' ; iconClass = "bi-graph-down-arrow"}
+    else if (parseInt(fng.value) <= 54) {color = '#5bc0de' ; iconClass = "bi-graph-down-arrow"}
+    else if (parseInt(fng.value) <= 74) {color = '#5cb85c' ; iconClass = "bi-graph-up-arrow"}
+    else {color = "#28a745" ; iconClass = "bi-graph-up-arrow"}
+    %>
     <div class="trend positive">
-      <i class="bi bi-graph-up-arrow"></i>
-      +2.4%
+      <i class="bi <%= iconClass %>" style = "color :<%= color %>;"></i>
+      <span style="color: <%= color %>;">
+        <%= fng.value_classification %>
+      </span>
     </div>
   </div>
   
@@ -106,7 +141,9 @@
   <p class="card-label">Fear and Greed Index</p>
   
   <!-- Value -->
-  <p class="card-value">$2.15T</p>
+  <p class="card-value">
+    <%= fng.value %>
+  </p>
 </div>
 
   </div>
