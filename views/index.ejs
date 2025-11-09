@@ -40,8 +40,14 @@
 
       <!-- Value -->
       <p class="card-value">
-        <%= Intl.NumberFormat("en-US", { style: "currency" , currency: "USD" , notation: "compact" ,
-          maximumFractionDigits: 2 }).format(global.total_market_cap.usd) %>
+        <%= global && global.total_market_cap && global.total_market_cap.usd
+    ? Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        notation: "compact",
+        maximumFractionDigits: 2
+      }).format(global.total_market_cap.usd)
+    : "Data unavailable" %>
       </p>
     </div>
     <!--Card 2 : 24h Volume-->
