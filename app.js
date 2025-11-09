@@ -28,7 +28,7 @@ app.get("/" , async (req,res)=> {
       axios.get("https://api.alternative.me/fng/"),
       axios.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin")
     ]) ;
-    const global = globalRes?.data?.data || {};
+    const global = globalRes?.data?.data || { total_market_cap: { usd: 0 } };
     const coin = coinsRes.data ;
     const trend = trendingRes.data ;
     const fng = fngRes.data.data[0] ;
