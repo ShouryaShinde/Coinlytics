@@ -1,0 +1,21 @@
+<%- include("partials/header.ejs") %>
+<div class="headings">
+    <h1>Latest News</h1>
+    <p class="text-body-secondary">Latest updates on Cryptocurrencies</p>
+</div>
+<div class="news-container">
+  <div class="list-group bg-black" >
+    <%for (let i = 0 ; i < news.length ; i++) {%>
+      <a href="<%= news[i].link %>" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">  
+        <div class="d-flex gap-2 w-100 justify-content-between"> 
+          <div> 
+            <h6 class="mb-0 news-title"><%= news[i].title%></h6> 
+            <p class="mb-0 opacity-75"><%= news[i].description.slice(0, 150) + '...' %></p> 
+          </div> 
+          <small class="opacity-50 text-nowrap"><%= news[i].pubDate%></small> 
+        </div> 
+      </a> 
+    <%}%>
+  </div>
+</div>
+<%- include("partials/footer.ejs") %>

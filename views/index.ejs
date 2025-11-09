@@ -154,6 +154,7 @@
       <tr class="table-row clickable">
         <td class="table-cell"><%= coin[i].market_cap_rank %></td>
         <td class="table-cell">
+        <a method = "GET" href = "/coin/<%=coin[i].id%>">
           <div class="crypto-name">
             <img src="<%= coin[i].image %>" alt="<%= coin[i].name%>" class="coin-image">
             <div class="name-info">
@@ -161,6 +162,7 @@
               <span class="name-text"><%= coin[i].name %></span>
             </div>
           </div>
+        </a>
         </td>
         <td class="table-cell"><%= Intl.NumberFormat("en-US", { style : "currency" , 
         currency : "USD" ,

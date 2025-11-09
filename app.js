@@ -3,6 +3,9 @@ import bodyparser from "body-parser" ;
 import path from "path";
 import fs from "fs";
 import axios from "axios" ;
+import dotenv from "dotenv";
+dotenv.config();
+
 
 const app = express();
 const port = 3000;
@@ -33,7 +36,7 @@ app.get("/" , async (req,res)=> {
     res.render("index.ejs" , {global , coin , trend , fng , btcData}) ;
   }  catch(error) {
     console.log("Error")
-    res.render("index.ejs" , {global : [] , coin : [] , trend : [] , fng : [] , btcData : []})
+    res.render("index.ejs" , {global : {} , coin : [] , trend : {} , fng : {} , btcData : {}})
   }
 });
 
@@ -57,7 +60,18 @@ app.get("/coin/:id" , async(req ,res) => {
     res.render("coin.ejs" , {coin : coinData[0]}) ;
   } catch(error) {
     console.error("Error searching:", error.message);
-    res.render("coinsearch.ejs", { coin : []});
+    res.render("coin.ejs", { coin : []});
+  }
+});
+
+app.get("/news" , async(req,res) => {
+  try{
+    const response = await axios.get(`https://newsdata.io/api/1/news?apikey=${process.env.NEWS_API_KEY}&q=cryptocurrency&language=en`) ;
+    const newsData = response.data.results ;
+    res.render("news.ejs" , {news : newsData})
+  } catch(error) {
+    console.log("Error getting News updates :" , error.message) ;
+    res.render("news.ejs" , {news : []}) ;
   }
 });
 
