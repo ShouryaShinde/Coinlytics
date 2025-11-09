@@ -1,3 +1,90 @@
 <%- include("partials/header.ejs") %>
-
+<div class="coin-details">
+  <img src="<%= coin.image%>" alt="<%= coin.name%>" class="coin-logo">
+  <div class = "coin-name-info">
+    <span class="coin-symbol"><%= coin.symbol.toUpperCase()%></span>
+    <span class="coin-name"><%= coin.name%></span>
+  </div>
+</div>
+<div class = "Spacing"> </div>
+<div>
+  <table class="crypto-table">
+    <thead class="table-header">
+      <tr class="table-row">
+        <th class="table-head">Label</th>
+        <th class="table-head">Value</th>
+      </tr>
+    </thead>
+    <tbody class="table-body">
+      <tr class="table-row ">
+        <td class="table-cell">Market Cap</td>
+        <td class="table-cell">
+          <%= Intl.NumberFormat("en-US" , { style : "currency" , currency : "USD" , notation : "compact" ,maximumFractionDigits : 2 }).format(coin.market_cap) %>
+        </td>
+      </tr>
+      <tr class="table-row ">
+        <td class="table-cell">Total Volume</td>
+        <td class="table-cell">
+          <%= Intl.NumberFormat("en-US" , { style : "currency" , currency : "USD" , notation : "compact" ,maximumFractionDigits : 2 }).format(coin.total_volume) %>
+        </td>
+      </tr>
+      <tr class="table-row ">
+        <td class="table-cell">24h High</td>
+        <td class="table-cell">
+          <%=Intl.NumberFormat("en-US" , { style : "currency" , currency : "USD" , notation : "compact" ,maximumFractionDigits : 2 }).format( coin.high_24h) %>
+        </td>
+      </tr>
+      <tr class="table-row ">
+        <td class="table-cell">24h Low</td>
+        <td class="table-cell">
+          <%=Intl.NumberFormat("en-US" , { style : "currency" , currency : "USD" , notation : "compact" ,maximumFractionDigits : 2 }).format( coin.low_24h) %>
+        </td>
+      </tr>
+      <tr class="table-row ">
+        <td class="table-cell">Market Cap Change (24h %)</td>
+        <%if (coin.market_cap_change_percentage_24h > 0) {%>
+        <td class="table-cell positive">
+          <div class = "trend positive" >
+            <i class="bi bi-graph-up-arrow"></i>
+            <%= Intl.NumberFormat("en-US", { notation: "compact" , maximumFractionDigits: 2
+            }).format(coin.market_cap_change_percentage_24h)%>%
+          </div>
+        </td>
+        <%} else {%> 
+          <td class="table-cell negative">
+            <div class = "trend negative" >
+              <i class="bi bi-graph-down-arrow"></i>
+                <%= Intl.NumberFormat("en-US", { notation: "compact" , maximumFractionDigits: 2
+                }).format(coin.market_cap_change_percentage_24h)%>%
+            </div>
+        </td>
+        <%}%>
+      </tr>
+      <tr class="table-row ">
+        <td class="table-cell">Circulating Suppy</td>
+        <td class="table-cell">
+          <%=Intl.NumberFormat("en-US" , { style : "currency" , currency : "USD" , notation : "compact" ,maximumFractionDigits : 2 }).format( coin.circulating_supply) %>
+        </td>
+      </tr>
+      <tr class="table-row ">
+        <td class="table-cell">Total Supply</td>
+        <td class="table-cell">
+          <%=Intl.NumberFormat("en-US" , { style : "currency" , currency : "USD" , notation : "compact" ,maximumFractionDigits : 2 }).format( coin.total_supply) %>
+        </td>
+      </tr>
+      <tr class="table-row ">
+        <td class="table-cell">All Time High</td>
+        <td class="table-cell">
+          <%=Intl.NumberFormat("en-US" , { style : "currency" , currency : "USD" , notation : "compact" ,maximumFractionDigits : 2 }).format( coin.ath) %>
+        </td>
+      </tr>
+      <tr class="table-row ">
+        <td class="table-cell">All Time Low</td>
+        <td class="table-cell">
+          <%=Intl.NumberFormat("en-US" , { style : "currency" , currency : "USD" , notation : "compact" ,maximumFractionDigits : 2 }).format( coin.atl) %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 <%- include("partials/footer.ejs") %>

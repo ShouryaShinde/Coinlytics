@@ -255,4 +255,60 @@ footer , header {
   transform: scale(1.08);
 }
 
+/* Coin Display Page */
+.coin-details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+.coin-name-info{
+  display: flex;
+  flex-direction: column;
+  align-items : left ;
+  gap: 5px;
+}
+.coin-logo {
+  height : 70px ;
+  width : 70px ;
+}
+.coin-symbol {
+  font-size: larger;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  color: #FFD700; /* golden yellow */
+  text-shadow:  0 0 8px rgba(255, 215, 0, 0.7), 
+                0 0 15px rgba(255, 215, 0, 0.5),
+                0 0 25px rgba(255, 215, 0, 0.3);
+  transition: text-shadow 0.3s ease, color 0.3s ease;
+}
+
+.coin-symbol:hover {
+  text-shadow:  0 0 10px rgba(255, 215, 0, 1),
+                0 0 25px rgba(255, 215, 0, 0.9),
+                0 0 40px rgba(255, 215, 0, 0.8);
+}
+
+/* Coin Name */
+.coin-name {
+  font-size: larger;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  color: #ffffff; /* pure white */
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.7),
+               0 0 12px rgba(255, 255, 255, 0.5),
+               0 0 20px rgba(255, 255, 255, 0.3);
+  transition: text-shadow 0.3s ease, color 0.3s ease;
+}
+
+.coin-name:hover {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 1),
+               0 0 25px rgba(255, 255, 255, 0.9),
+               0 0 40px rgba(255, 255, 255, 0.8);
+}
+
+
+.Spacing {
+  height: 50px;
+}
 

@@ -1,0 +1,48 @@
+<%- include("partials/header.ejs") %>
+
+<div class="headings">
+  <h3>Search Results</h3>
+  <p class="text-body-secondary">
+    Most relevant search results for "<%= searchText %>"
+  </p>
+</div>
+
+<% if (coindata && coindata.length > 0) { %> 
+  <table class="crypto-table">
+    <thead class="table-header">
+      <tr class="table-row">
+        <th class="table-head">#</th>
+        <th class="table-head">Name</th>
+        <th class="table-head">ID</th>
+        <th class="table-head">Market Cap Rank</th>
+      </tr>
+    </thead>
+
+    <tbody class="table-body">
+      <% for (let i = 0; i < Math.min(coindata.length, 10); i++) { %>
+        <tr class="table-row clickable">
+            <td class="table-cell"><%= i + 1 %></td>
+            <td class="table-cell">
+            <a method = "GET" href = "/coin/<%=coindata[i].id%>">
+              <div class="crypto-name">
+                <img src="<%= coindata[i].large %>" alt="<%= coindata[i].name %>" class="coin-image">
+                <div class="name-info">
+                  <span class="symbol"><%= coindata[i].symbol.toUpperCase() %></span>
+                  <span class="name-text"><%= coindata[i].name %></span>
+                </div>
+              </div>
+              </a>
+            </td>
+            <td class="table-cell"><%= coindata[i].id %></td>
+            <td class="table-cell">
+              <%= coindata[i].market_cap_rank || 'N/A' %>
+            </td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+<% } else { %>
+  <h4>No search result for "<%= searchText %>"</h4>
+<% } %>
+
+<%- include("partials/footer.ejs") %>

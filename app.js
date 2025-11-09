@@ -37,5 +37,28 @@ app.get("/" , async (req,res)=> {
   }
 });
 
+app.get("/searchcoin" , async(req , res)=> {
+  try {
+    const query = req.query.coin_name ;
+    const coin = await axios.get(`https://api.coingecko.com/api/v3/search?query=${query}`) ;
+    res.render("coinsearch.ejs" , {coindata : coin.data.coins , searchText : query}) ;
+  } catch(error) {
+    const query = req.query.coin_name ;
+    console.error("Error searching:", error.message);
+    res.render("coinsearch.ejs", { coindata : [], searchText : query});
+  }
+});
+
+app.get("/coin/:id" , async(req ,res) => {
+  try {
+    const coinId = req.params.id ;
+    const response = await axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${coinId}`) ;
+    const coinData = response.data ;
+    res.render("coin.ejs" , {coin : coinData[0]}) ;
+  } catch(error) {
+    console.error("Error searching:", error.message);
+    res.render("coinsearch.ejs", { coin : []});
+  }
+});
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
