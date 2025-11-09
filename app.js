@@ -21,11 +21,11 @@ app.get("/" , async (req,res)=> {
           page: 1,
         },
       }),
-      axios.get("https://api.coingecko.com/api/v3/search/trending"),
+      axios.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1"),
       axios.get("https://api.alternative.me/fng/"),
       axios.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin")
     ]) ;
-    const global = globalRes.data.data ;
+    const global = globalRes?.data?.data || {};
     const coin = coinsRes.data ;
     const trend = trendingRes.data ;
     const fng = fngRes.data.data[0] ;
@@ -33,7 +33,7 @@ app.get("/" , async (req,res)=> {
     res.render("index.ejs" , {global , coin , trend , fng , btcData}) ;
   }  catch(error) {
     console.log("Error")
-    res.render("index.ejs" , {global : null , coin : [] , trend : [] , fng : [] , btcData : []})
+    res.render("index.ejs" , {global : [] , coin : [] , trend : [] , fng : [] , btcData : []})
   }
 });
 

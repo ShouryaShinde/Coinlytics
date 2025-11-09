@@ -105,3 +105,154 @@ footer , header {
   color: #ffcc00; /* gold */
   font-size: 1.5rem; /* optional, change size */
 }
+
+/* Crypto Coins Table */
+
+.paddingh2 {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.crypto-table-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: auto;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.name-info{
+  display: flex;
+  flex-direction: column;
+  align-items: left ;
+  gap: 5px;
+}
+
+.crypto-table {
+  width: 100%;
+  caption-side: bottom;
+  font-size: 0.875rem;
+  border-collapse: collapse;
+}
+
+.table-header {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.table-header .table-row {
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+.table-head {
+  height: 3rem;
+  padding: 1rem;
+  text-align: left;
+  vertical-align: middle;
+  font-weight: 500;
+  color: hsl(var(--muted-foreground));
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.table-body .table-row {
+  border-bottom: 1px solid hsl(var(--border));
+  transition: all 0.2s ease;
+}
+
+.table-body .table-row:last-child {
+  border-bottom: 0;
+}
+
+.table-row.clickable {
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+/* 🔥 Highlight background on hover */
+.table-row.clickable:hover {
+  background: hsl(var(--muted) / 0.3);
+}
+
+.table-cell {
+  padding: 1rem;
+  vertical-align: middle;
+  color: hsl(var(--foreground));
+}
+
+.crypto-name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.crypto-name .symbol {
+  font-weight: 600;
+  color: hsl(var(--foreground));
+}
+
+.crypto-name .name-text {
+  font-size: 0.75rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.table-cell.positive {
+  color: hsl(var(--success));
+  font-weight: 500;
+}
+
+.table-cell.negative {
+  color: hsl(var(--destructive));
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .crypto-table-wrapper {
+    font-size: 0.75rem;
+  }
+
+  .table-head,
+  .table-cell {
+    padding: 0.75rem 0.5rem;
+  }
+}
+
+/* Coin Image Styling */
+.coin-image {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: hsl(var(--muted));
+  border: 2px solid transparent;
+  transition: all 0.25s ease;
+}
+
+/* Table Row Styling */
+.table-body .table-row {
+  border-bottom: 1px solid hsl(var(--border));
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+/* Glowing border effect for entire row */
+.table-body .table-row:hover {
+  background: hsl(var(--primary) / 0.1);
+  transform: scale(1.01);
+  border: 1px solid hsl(var(--primary));
+  box-shadow: 0 0 10px hsl(var(--primary) / 0.5);
+}
+
+/* 🪙 Coin Image also glows with row */
+.table-body .table-row:hover .coin-image {
+  border-color: #1e90ff;
+  box-shadow: 0 0 10px hsl(var(--primary) / 0.5);
+  transform: scale(1.08);
+}
+
+
