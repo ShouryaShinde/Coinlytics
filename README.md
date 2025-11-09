@@ -70,7 +70,7 @@ Create a .env file in the root directory:
 NEWS_API_KEY=your_newsdata_api_key
 ```
 
-4️⃣ Run the app locally
+### 4️⃣ Run the app locally
 ```bash
 npm start
 ```
