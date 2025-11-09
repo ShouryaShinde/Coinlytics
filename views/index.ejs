@@ -1,210 +1,185 @@
 <%- include("partials/header.ejs") %>
-  <div class="headings">
-    <h1>Dashboard</h1>
-    <p class="text-body-secondary">Track real-time cryptocurrency prices and market trends</p>
-  </div>
-  <div class="Dashboard Cards GridParent">
-    <!--Card 1 : Total Market Cap-->
-    <div class="crypto-card">
-      <div class="card-header">
-        <!-- Icon Section -->
-        <div class="icon-wrapper">
-          <i class="bi bi-currency-dollar custom-icon"></i>
-        </div>
 
-        <!-- Trend Indicator -->
-        <% if (global && global.market_cap_change_percentage_24h_usd !== undefined) { %>
-          <% if (global.market_cap_change_percentage_24h_usd> 0) { %>
-            <div class="trend positive">
-              <i class="bi bi-graph-up-arrow"></i>
-              +<%= Intl.NumberFormat("en-US", { notation: "compact" , maximumFractionDigits: 2
-                }).format(global.market_cap_change_percentage_24h_usd) %>%
-            </div>
-            <% } else { %>
-              <div class="trend negative">
-                <i class="bi bi-graph-down-arrow"></i>
-                <%= Intl.NumberFormat("en-US", { notation: "compact" , maximumFractionDigits: 2
-                  }).format(global.market_cap_change_percentage_24h_usd) %>%
-              </div>
-              <%}%>
-        <% } else { %>
-        <div class="trend neutral text-muted">
-        <i class="bi bi-question-circle"></i>
-        Data unavailable
-        </div>
-        <% } %>
+<div class="headings">
+  <h1>Dashboard</h1>
+  <p class="text-body-secondary">Track real-time cryptocurrency prices and market trends</p>
+</div>
+
+<div class="Dashboard Cards GridParent">
+  <!-- Card 1: Total Market Cap -->
+  <div class="crypto-card">
+    <div class="card-header">
+      <div class="icon-wrapper">
+        <i class="bi bi-currency-dollar custom-icon"></i>
       </div>
 
-      <!-- Label -->
-      <p class="card-label">Total Market Cap</p>
-
-      <!-- Value -->
-      <p class="card-value">
-        <%= global && global.total_market_cap && global.total_market_cap.usd
-    ? Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-        notation: "compact",
-        maximumFractionDigits: 2
-      }).format(global.total_market_cap.usd)
-    : "Data unavailable" %>
-      </p>
-    </div>
-    <!--Card 2 : 24h Volume-->
-    <div class="crypto-card">
-      <div class="card-header">
-        <!-- Icon Section -->
-        <div class="icon-wrapper">
-          <i class="bi bi-activity custom-icon"></i>
-        </div>
-
-        <!-- Trend Indicator -->
-        <div class="trend positive">
-        </div>
-      </div>
-
-      <!-- Label -->
-      <p class="card-label">24h Volume</p>
-
-      <!-- Value -->
-      <p class="card-value">
-        <%= Intl.NumberFormat("en-US" , { style : "currency" , currency : "USD" , notation : "compact" ,
-          maximumFractionDigits : 2 }).format(global.total_volume.usd) %>
-      </p>
-    </div>
-    <!--Card 3 : BTC Dominance -->
-    <div class="crypto-card">
-      <div class="card-header">
-        <!-- Icon Section -->
-        <div class="icon-wrapper">
-          <i class="bi bi-currency-bitcoin custom-icon"></i>
-        </div>
-
-        <!-- Trend Indicator -->
-        <% if (btcData.market_cap_change_percentage_24h> 0) { %>
+      <% if (global && typeof global.market_cap_change_percentage_24h_usd === 'number') { %>
+        <% if (global.market_cap_change_percentage_24h_usd > 0) { %>
           <div class="trend positive">
             <i class="bi bi-graph-up-arrow"></i>
-            +<%= Intl.NumberFormat("en-US", { notation: "compact" , maximumFractionDigits: 2
-              }).format(btcData.market_cap_change_percentage_24h) %>%
+            +<%= global.market_cap_change_percentage_24h_usd.toFixed(2) %>%
           </div>
-          <% } else { %>
-            <div class="trend negative">
-              <i class="bi bi-graph-down-arrow"></i>
-              <%= Intl.NumberFormat("en-US", { notation: "compact" , maximumFractionDigits: 2
-                }).format(btcData.market_cap_change_percentage_24h) %>%
-            </div>
-            <%}%>
-      </div>
-
-      <!-- Label -->
-      <p class="card-label">BTC Dominance</p>
-
-      <!-- Value -->
-      <p class="card-value">
-        <%= Intl.NumberFormat("en-US" , { style : "currency" , currency : "USD" , notation : "compact" ,
-          maximumFractionDigits : 2 }).format(btcData.market_cap) %>
-      </p>
-    </div>
-    <!--Card 4 : Feed and Greed Index -->
-    <div class="crypto-card">
-      <div class="card-header">
-        <!-- Icon Section -->
-        <div class="icon-wrapper">
-          <i class="bi bi-heart-pulse custom-icon"></i>
+        <% } else { %>
+          <div class="trend negative">
+            <i class="bi bi-graph-down-arrow"></i>
+            <%= global.market_cap_change_percentage_24h_usd.toFixed(2) %>%
+          </div>
+        <% } %>
+      <% } else { %>
+        <div class="trend neutral text-muted">
+          <i class="bi bi-question-circle"></i>
+          Data unavailable
         </div>
+      <% } %>
+    </div>
 
-        <!-- Trend Indicator -->
-        <% let color="" ; let iconClass="" ; if (parseInt(fng.value) <=24 ) { color='#d9534f' ;
-          iconClass="bi-graph-down-arrow" } else if (parseInt(fng.value ) <=50) { color='#f0ad4e' ;
-          iconClass="bi-graph-down-arrow" } else if (parseInt(fng.value) <=54) {color='#5bc0de' ;
-          iconClass="bi-graph-down-arrow" } else if (parseInt(fng.value) <=74) {color='#5cb85c' ;
-          iconClass="bi-graph-up-arrow" } else {color="#28a745" ; iconClass="bi-graph-up-arrow" } %>
-          <div class="trend positive">
-            <i class="bi <%= iconClass %>" style="color : <%= color %>; "></i>
-            <span style="color: <%= color %> ;">
-              <%= fng.value_classification %>
-            </span>
-          </div>
+    <p class="card-label">Total Market Cap</p>
+    <p class="card-value">
+      <%= global?.total_market_cap?.usd
+        ? Intl.NumberFormat("en-US", { style: "currency", currency: "USD", notation: "compact", maximumFractionDigits: 2 })
+          .format(global.total_market_cap.usd)
+        : "Data unavailable" %>
+    </p>
+  </div>
+
+  <!-- Card 2: 24h Volume -->
+  <div class="crypto-card">
+    <div class="card-header">
+      <div class="icon-wrapper">
+        <i class="bi bi-activity custom-icon"></i>
+      </div>
+    </div>
+
+    <p class="card-label">24h Volume</p>
+    <p class="card-value">
+      <%= global?.total_volume?.usd
+        ? Intl.NumberFormat("en-US", { style: "currency", currency: "USD", notation: "compact", maximumFractionDigits: 2 })
+          .format(global.total_volume.usd)
+        : "Data unavailable" %>
+    </p>
+  </div>
+
+  <!-- Card 3: BTC Dominance -->
+  <div class="crypto-card">
+    <div class="card-header">
+      <div class="icon-wrapper">
+        <i class="bi bi-currency-bitcoin custom-icon"></i>
       </div>
 
-      <!-- Label -->
-      <p class="card-label">Fear and Greed Index</p>
-
-      <!-- Value -->
-      <p class="card-value">
-        <%= fng.value %>
-      </p>
+      <% if (btcData?.market_cap_change_percentage_24h !== undefined) { %>
+        <% if (btcData.market_cap_change_percentage_24h > 0) { %>
+          <div class="trend positive">
+            <i class="bi bi-graph-up-arrow"></i>
+            +<%= btcData.market_cap_change_percentage_24h.toFixed(2) %>%
+          </div>
+        <% } else { %>
+          <div class="trend negative">
+            <i class="bi bi-graph-down-arrow"></i>
+            <%= btcData.market_cap_change_percentage_24h.toFixed(2) %>%
+          </div>
+        <% } %>
+      <% } else { %>
+        <div class="trend neutral text-muted">
+          <i class="bi bi-question-circle"></i> Data unavailable
+        </div>
+      <% } %>
     </div>
+
+    <p class="card-label">BTC Dominance</p>
+    <p class="card-value">
+      <%= btcData?.market_cap
+        ? Intl.NumberFormat("en-US", { style: "currency", currency: "USD", notation: "compact", maximumFractionDigits: 2 })
+          .format(btcData.market_cap)
+        : "Data unavailable" %>
+    </p>
   </div>
+
+  <!-- Card 4: Fear & Greed Index -->
+  <div class="crypto-card">
+    <div class="card-header">
+      <div class="icon-wrapper">
+        <i class="bi bi-heart-pulse custom-icon"></i>
+      </div>
+
+      <% let color = '#999', iconClass = 'bi-question-circle', classification = 'N/A';
+        if (fng?.value) {
+          const val = parseInt(fng.value);
+          if (val <= 24) { color = '#d9534f'; iconClass = 'bi-graph-down-arrow'; }
+          else if (val <= 50) { color = '#f0ad4e'; iconClass = 'bi-graph-down-arrow'; }
+          else if (val <= 54) { color = '#5bc0de'; iconClass = 'bi-graph-up-arrow'; }
+          else if (val <= 74) { color = '#5cb85c'; iconClass = 'bi-graph-up-arrow'; }
+          else { color = '#28a745'; iconClass = 'bi-graph-up-arrow'; }
+          classification = fng.value_classification || 'Neutral';
+        }
+      %>
+
+      <div class="trend positive">
+        <i class="bi <%= iconClass %>" style="color:<%= color %>"></i>
+        <span style="color:<%= color %>"><%= classification %></span>
+      </div>
+    </div>
+
+    <p class="card-label">Fear and Greed Index</p>
+    <p class="card-value"><%= fng?.value || "N/A" %></p>
   </div>
-  </div>
-  <!-- Top 10 coins section-->
-  <div class="headings paddingh2">
-    <h2>Top Cryptocurrencies</h2>
-  <div class="crypto-table-wrapper">
+</div>
+
+<!-- Top 10 Coins -->
+<div class="headings paddingh2">
+  <h2>Top Cryptocurrencies</h2>
+</div>
+
+<div class="crypto-table-wrapper">
   <table class="crypto-table">
     <thead class="table-header">
-      <tr class="table-row">
-        <th class="table-head">Rank</th>
-        <th class="table-head">Name</th>
-        <th class="table-head">Price</th>
-        <th class="table-head">24h %</th>
-        <th class="table-head">Market Cap</th>
-        <th class="table-head">Volume</th>
+      <tr>
+        <th>Rank</th><th>Name</th><th>Price</th><th>24h %</th><th>Market Cap</th><th>Volume</th>
       </tr>
     </thead>
-    <tbody class="table-body">
-      <%
-        for (let i = 0 ; i < 10 ; i++) {
-      %>
-      <tr class="table-row clickable">
-        <td class="table-cell"><%= coin[i].market_cap_rank %></td>
-        <td class="table-cell">
-        <a method = "GET" href = "/coin/<%=coin[i].id%>">
-          <div class="crypto-name">
-            <img src="<%= coin[i].image %>" alt="<%= coin[i].name%>" class="coin-image">
-            <div class="name-info">
-              <span class="symbol"><%= (coin[i].symbol).toUpperCase() %></span>
-              <span class="name-text"><%= coin[i].name %></span>
-            </div>
-          </div>
-        </a>
-        </td>
-        <td class="table-cell"><%= Intl.NumberFormat("en-US", { style : "currency" , 
-        currency : "USD" ,
-        notation: "compact" , 
-        maximumFractionDigits: 2
-        }).format(coin[i].current_price)%></td>
-        <% if (coin[i].market_cap_change_percentage_24h > 0) {%>
-        <td class="table-cell positive">
-        <div class = "trend positive" >
-          <i class="bi bi-graph-up-arrow"></i>
-          +<%= Intl.NumberFormat("en-US", { notation: "compact" , maximumFractionDigits: 2
-          }).format(coin[i].market_cap_change_percentage_24h)%>%
-        </div>
-        </td>
-        <%} else {%>
-        <td class="table-cell negative">
-        <div class = "trend negative" >
-          <i class="bi bi-graph-down-arrow"></i>
-          <%= Intl.NumberFormat("en-US", { notation: "compact" , maximumFractionDigits: 2
-          }).format(coin[i].market_cap_change_percentage_24h)%>%
-        </div>
-        </td>
-        <% } %>
-        <td class="table-cell"><%= Intl.NumberFormat("en-US", { style : "currency" , 
-        currency : "USD" ,
-        notation: "compact" , 
-        maximumFractionDigits: 2
-        }).format(coin[i].market_cap)%></td>
-        <td class="table-cell"><%= Intl.NumberFormat("en-US", { style : "currency" , 
-        currency : "USD" ,
-        notation: "compact" , 
-        maximumFractionDigits: 2
-        }).format(coin[i].total_volume)%></td>
-      </tr>
+    <tbody>
+      <% if (coin && coin.length > 0) { %>
+        <% coin.forEach(c => { %>
+          <tr class="table-row clickable">
+            <td><%= c.market_cap_rank || '-' %></td>
+            <td>
+              <a href="/coin/<%= c.id %>">
+                <div class="crypto-name">
+                  <img src="<%= c.image %>" alt="<%= c.name %>" class="coin-image">
+                  <div class="name-info">
+                    <span class="symbol"><%= (c.symbol || '').toUpperCase() %></span>
+                    <span class="name-text"><%= c.name || 'N/A' %></span>
+                  </div>
+                </div>
+              </a>
+            </td>
+            <td><%= c.current_price
+              ? Intl.NumberFormat("en-US", { style: "currency", currency: "USD", notation: "compact" }).format(c.current_price)
+              : "N/A" %></td>
+
+            <% if (c.market_cap_change_percentage_24h > 0) { %>
+              <td class="positive">
+                <i class="bi bi-graph-up-arrow"></i> +<%= c.market_cap_change_percentage_24h.toFixed(2) %>%
+              </td>
+            <% } else { %>
+              <td class="negative">
+                <i class="bi bi-graph-down-arrow"></i> <%= c.market_cap_change_percentage_24h?.toFixed(2) || "0.00" %>%
+              </td>
+            <% } %>
+
+            <td><%= c.market_cap
+              ? Intl.NumberFormat("en-US", { style: "currency", currency: "USD", notation: "compact" }).format(c.market_cap)
+              : "N/A" %></td>
+
+            <td><%= c.total_volume
+              ? Intl.NumberFormat("en-US", { style: "currency", currency: "USD", notation: "compact" }).format(c.total_volume)
+              : "N/A" %></td>
+          </tr>
+        <% }) %>
+      <% } else { %>
+        <tr><td colspan="6" class="text-center">No data available</td></tr>
       <% } %>
     </tbody>
   </table>
 </div>
+
 <%- include("partials/footer.ejs") %>
