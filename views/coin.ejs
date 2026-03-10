@@ -2,7 +2,7 @@
 <div class="coin-details">
   <img src="<%= coin.image%>" alt="<%= coin.name%>" class="coin-logo">
   <div class = "coin-name-info">
-    <span class="coin-symbol"><%= coin.symbol.toUpperCase()%></span>
+    <span class="coin-symbol"><%= coin?.symbol ? coin.symbol.toUpperCase() : "N/A" %></span>
     <span class="coin-name"><%= coin.name%></span>
   </div>
 </div>

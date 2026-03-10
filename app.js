@@ -10,12 +10,29 @@ dotenv.config();
 const app = express();
 const port = 3000;
 
+let cache = {
+  global: null,
+  coin: null,
+  trend: null,
+  fng: null,
+  btcData: null,
+  lastFetch: 0
+};
+
+const CACHE_DURATION = 5 * 60 * 1000; 
+
 app.use(express.static("public"));
 
-app.get("/" , async (req,res)=> {
+async function fetchCryptoData() {
+  const now = Date.now();
+
+  if (cache.global && now - cache.lastFetch < CACHE_DURATION) {
+    return cache;
+  }
+
   try {
-    const [globalRes , coinsRes , trendingRes , fngRes , btcRes] = await Promise.all ([
-      axios.get("https://api.coingecko.com/api/v3/global") ,
+    const [globalRes, coinsRes, trendingRes, fngRes, btcRes] = await Promise.all([
+      axios.get("https://api.coingecko.com/api/v3/global"),
       axios.get("https://api.coingecko.com/api/v3/coins/markets", {
         params: {
           vs_currency: "usd",
@@ -27,16 +44,40 @@ app.get("/" , async (req,res)=> {
       axios.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1"),
       axios.get("https://api.alternative.me/fng/"),
       axios.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin")
-    ]) ;
-    const global = globalRes?.data?.data || { total_market_cap: { usd: 0 } };
-    const coin = coinsRes.data ;
-    const trend = trendingRes.data ;
-    const fng = fngRes.data.data[0] ;
-    const btcData = btcRes.data[0]
-    res.render("index.ejs" , {global , coin , trend , fng , btcData}) ;
-  }  catch(error) {
-    console.log("Error")
-    res.render("index.ejs" , {global : {} , coin : [] , trend : {} , fng : {} , btcData : {}})
+    ]);
+
+    cache = {
+      global: globalRes?.data?.data || { total_market_cap: { usd: 0 } },
+      coin: coinsRes.data,
+      trend: trendingRes.data,
+      fng: fngRes.data.data[0],
+      btcData: btcRes.data[0],
+      lastFetch: now
+    };
+
+    return cache;
+
+  } catch (error) {
+    console.error("API Fetch Error:", error.message);
+    return cache;
+  }
+}
+
+app.get("/", async (req, res) => {
+  try {
+    const data = await fetchCryptoData();
+
+    res.render("index.ejs", {
+      global: data.global,
+      coin: data.coin,
+      trend: data.trend,
+      fng: data.fng,
+      btcData: data.btcData
+    });
+
+  } catch (error) {
+    console.log("Error loading homepage:", error.message);
+    res.render("index.ejs", { global: {}, coin: [], trend: {}, fng: {}, btcData: {} });
   }
 });
 
