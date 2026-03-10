@@ -1,35 +1,85 @@
-# 💰 Coinlytics — Real-Time Cryptocurrency Dashboard
-
 ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
 ![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
 ![EJS](https://img.shields.io/badge/EJS-4B32C3?style=for-the-badge)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
+![Render](https://img.shields.io/badge/Deployed%20on-Render-46E3B7?style=for-the-badge&logo=render&logoColor=black)
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)
 
-**Coinlytics** is a real-time cryptocurrency dashboard that allows users to **track live coin prices, market trends, and latest news**. Built with Node.js, Express, and EJS, this dashboard provides a sleek and responsive UI for crypto enthusiasts.
+**Coinlytics** is a real-time cryptocurrency dashboard that allows users to **track live coin prices, market trends, and the latest crypto news**.
+
+Built with **Node.js, Express, and EJS**, Coinlytics provides a **clean, responsive, and interactive interface** for monitoring cryptocurrency markets.
 
 ---
 
-## 🚀 Features
-✅ **Global Crypto Stats** — Total Market Cap, 24h Volume, BTC Dominance, and Fear & Greed Index  
-✅ **Top 10 Cryptocurrencies** — Real-time price, 24h % change, market cap, and trading volume  
-✅ **Coin Search** — Search for any cryptocurrency and view detailed info  
-✅ **News Updates** — Latest cryptocurrency news headlines  
-✅ **Modern UI** — Clean, responsive, and interactive dashboard using Bootstrap  
-✅ **API-Driven** — Real-time data from CoinGecko and NewsData.io  
+# 🌍 Live Demo
+
+🚀 Try Coinlytics live:
+
+🔗 [https://coinlytics-2otc.onrender.com](https://coinlytics-2otc.onrender.com)
 
 ---
 
-## 🧩 Tech Stack
+# 🚀 Features
+
+✅ **Global Crypto Statistics**  
+View key market indicators such as:
+
+- Total Market Cap
+- 24h Trading Volume
+- BTC Dominance
+- Fear & Greed Index
+
+---
+
+✅ **Top 10 Cryptocurrencies**
+
+Track the most popular cryptocurrencies including:
+
+- Real-time price
+- 24-hour percentage change
+- Market capitalization
+- Trading volume
+
+---
+
+✅ **Coin Search**
+
+Search for any cryptocurrency and view detailed information including:
+
+- Coin name
+- Symbol
+- Market data
+- Price details
+
+---
+
+✅ **Crypto News Updates**
+
+Stay updated with the latest cryptocurrency news powered by **NewsData.io API**.
+
+---
+
+✅ **Responsive Dashboard UI**
+
+Modern responsive interface built using **Bootstrap** with:
+
+- Interactive tables
+- Market trend indicators
+- Clean card layouts
+
+---
+
+# 🧩 Tech Stack
 
 | Layer | Technologies |
-|:------|:--------------|
+|------|-------------|
 | **Frontend** | EJS / HTML / CSS / JavaScript / Bootstrap |
 | **Backend** | Node.js / Express.js |
-| **APIs** | CoinGecko API, NewsData.io API |
+| **APIs** | CoinGecko API / NewsData.io API |
 | **Deployment** | Render |
 
 ---
+
 
 ## 📂 Project Structure
 ```
@@ -123,3 +173,13 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 If you find **Coinlytics** helpful, give it a ⭐ star on GitHub and share it with your network!
 
 > “Track cryptocurrency markets efficiently — one dashboard at a time.”
+
+---
+
+✅ If you'd like, I can also show you **3 small upgrades that make your Coinlytics repo look like a professional production project**, such as:
+
+- adding **crypto API architecture diagram**
+- adding **GIF demo of the dashboard**
+- adding **feature screenshots section**
+
+These **really help when recruiters review your GitHub.**
