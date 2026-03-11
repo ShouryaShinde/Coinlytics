@@ -75,7 +75,7 @@ Modern responsive interface built using **Bootstrap** with:
 |------|-------------|
 | **Frontend** | EJS / HTML / CSS / JavaScript / Bootstrap |
 | **Backend** | Node.js / Express.js |
-| **APIs** | CoinGecko API / NewsData.io API |
+| **APIs** | CoinPaprika API / NewsData.io API |
 | **Deployment** | Render |
 
 ---
@@ -122,16 +122,16 @@ NEWS_API_KEY=your_newsdata_api_key
 
 ### 4️⃣ Run the app locally
 ```bash
-npm start
+node app.js
 ```
-Visit: http://localhost:3000
+Visit: ![http://localhost:3000](http://localhost:3000)
 
 ---
 
 ## 🧠 How It Works
 
 1. **Fetch Global & Coin Data** 📊  
-   Uses **CoinGecko API** to retrieve top cryptocurrencies and global stats.
+   Uses **CoinPaprika API** to retrieve top cryptocurrencies and global stats.
 
 2. **Search & Details** 🔍  
    Search any coin to view its logo, symbol, name, market cap, price, and trends.
@@ -146,7 +146,7 @@ Visit: http://localhost:3000
 
 ## ⚡ Notes
 
-- The deployed app may occasionally show “Data Unavailable” due to API rate limits.  
+- The deployed app may occasionally show “Data Unavailable” due to API rate limits. Simply refresh the website if you encounter this problem .  
 - Local deployment provides full functionality and faster updates.
 
 ---
@@ -172,14 +172,5 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 ## ⭐ Support
 If you find **Coinlytics** helpful, give it a ⭐ star on GitHub and share it with your network!
 
-> “Track cryptocurrency markets efficiently — one dashboard at a time.”
+> “Track cryptocurrency markets efficiently .”
 
----
-
-✅ If you'd like, I can also show you **3 small upgrades that make your Coinlytics repo look like a professional production project**, such as:
-
-- adding **crypto API architecture diagram**
-- adding **GIF demo of the dashboard**
-- adding **feature screenshots section**
-
-These **really help when recruiters review your GitHub.**
